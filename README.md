@@ -32,6 +32,6 @@ _(Add a screenshot after deploying on GitHub Pages or download it from CodePen.)
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/shadow-puzzle-css.git
-   cd shadow-puzzle-css
+   git clone https://github.com/sladjanasto/shadow-puzzle
+   cd shadow-puzzle
    ```
