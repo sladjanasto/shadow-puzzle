@@ -26,8 +26,6 @@ This game is:
 
 ![Shadow Puzzle Screenshot](/screenshot_tanagram.png)
 
-_(Add a screenshot after deploying on GitHub Pages or download it from CodePen.)_
-
 ## 🛠️ How to Use
 
 1. Clone the repository:
