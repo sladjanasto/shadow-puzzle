@@ -1,0 +1,78 @@
+doctype html
+html
+    head
+        title Tanagram
+        link(rel='stylesheet', href='./style.css')
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap")
+    body
+        .wrapper
+            .tanagram-box
+            .tanagram-box
+            form.container
+                input(type='checkbox', id='start', class='hide_input start' autofocus)
+                button(type='reset', id='restart', class='start-button') Restart
+                label(for='start', class='start-button' ) Start        
+                .shadow
+                    - const rotations = ['45', '90', '135', '180', '225', '270', '315', '360']
+                    -  
+                        let shadowCounts = {
+                            blueTriangle: { 360: 2, 90: 1, 225: 1, 315: 1 },
+                            pinkTriangle: { 360: 5, 45: 2, 90: 7, 135: 4, 180: 6, 225: 5, 270: 9, 315: 2 },
+                            yellowTriangle: { 360: 1, 135: 1, 225: 1, 270: 2 },
+                            redTriangle: { 360: 9, 45: 2, 90: 5, 135: 5, 180: 7, 225: 4, 270: 6, 315: 5 },
+                            purpleTriangle: { 360: 3, 45: 2, 90: 2, 135: 3, 180: 2, 225: 2, 270: 3, 315: 3 },
+                            square: { 45: 2, 90: 5,},
+                            polygon: { 360: 2, 45: 2, 90: 6, 135: 2}
+                        }
+                    - const tans = ['blueTriangle', 'yellowTriangle', 'pinkTriangle', 'redTriangle', 'purpleTriangle', 'square', 'polygon']
+                    mixin tans(name) 
+                        - let mainInputID = `${name}-tan`
+                        input(type="radio" id=mainInputID, name='tan-active').hide_input
+                    mixin tansLabs(name)
+                        - let mainInputID = `${name}-tan`    
+                        - let mainLabelID = `tan${name}lab` 
+                        label(for=mainInputID, id=mainLabelID , class=name).tans
+                        div(id=`tan${name}labRes`).tans.tan_blocked
+
+                    mixin inputs(name)
+                        - let angles = Object.keys(shadowCounts[name])
+                        each angle in angles 
+                            - let count = shadowCounts[name][angle]
+                            each num in Array.from({ length: count }, (_, i) => i)
+                                - let id = `${name}-tan-${num+1}-${angle}`
+                                input(type="checkbox" id=id name="tan-rotation").hide_input
+                                
+                    mixin labels(name)            
+                        - let angles = Object.keys(shadowCounts[name])
+                        each angle in angles 
+                            - let count = shadowCounts[name][angle]
+                            each num in Array.from({ length: count }, (_, i) => i)
+                                - let id = `${name}-tan-${num+1}-${angle}`
+                                - let labelID = `tan${name}lab-${num+1}-${angle}`
+                                label(for=id, id=labelID , class=name).tans
+                    each tan in tans
+                        +tans(tan)
+
+                    input(type='radio' id=`rotation-reset`, name='tan-active').hide_input
+                    each rotation in rotations
+                        input(type='radio', id=`rotation-${rotation}`, name='tan-rotation').hide_input
+                    each tan in tans
+                        +inputs(tan)
+                    
+                    each rotation in rotations
+                        label(for=`rotation-${rotation}`, id=`rot${rotation}`).rotation.rot &#10226;
+                    label(for='rotation-reset', id='rotReset').rotation &#x2718;
+                    each tan in tans
+                        +tansLabs(tan)
+                    each tan in tans
+                        +labels(tan)
+                    div.shape
+
+            .tanagram-box
+            .tanagram-box
+            .tanagram-box
+            .tanagram-box
+            .tanagram-box

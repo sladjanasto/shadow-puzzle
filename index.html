@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tanagram</title>
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&amp;display=swap">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="tanagram-box"></div>
+      <div class="tanagram-box"></div>
+      <form class="container">
+        <input class="hide_input start" type="checkbox" id="start" autofocus>
+        <button class="start-button" type="reset" id="restart">Restart</button>
+        <label class="start-button" for="start">Start        </label>
+        <div class="shadow">
+                    <input class="hide_input" type="radio" id="blueTriangle-tan" name="tan-active">
+                    <input class="hide_input" type="radio" id="yellowTriangle-tan" name="tan-active">
+                    <input class="hide_input" type="radio" id="pinkTriangle-tan" name="tan-active">
+                    <input class="hide_input" type="radio" id="redTriangle-tan" name="tan-active">
+                    <input class="hide_input" type="radio" id="purpleTriangle-tan" name="tan-active">
+                    <input class="hide_input" type="radio" id="square-tan" name="tan-active">
+                    <input class="hide_input" type="radio" id="polygon-tan" name="tan-active">
+          <input class="hide_input" type="radio" id="rotation-reset" name="tan-active">
+          <input class="hide_input" type="radio" id="rotation-45" name="tan-rotation">
+          <input class="hide_input" type="radio" id="rotation-90" name="tan-rotation">
+          <input class="hide_input" type="radio" id="rotation-135" name="tan-rotation">
+          <input class="hide_input" type="radio" id="rotation-180" name="tan-rotation">
+          <input class="hide_input" type="radio" id="rotation-225" name="tan-rotation">
+          <input class="hide_input" type="radio" id="rotation-270" name="tan-rotation">
+          <input class="hide_input" type="radio" id="rotation-315" name="tan-rotation">
+          <input class="hide_input" type="radio" id="rotation-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="blueTriangle-tan-1-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="blueTriangle-tan-1-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="blueTriangle-tan-1-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="blueTriangle-tan-1-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="blueTriangle-tan-2-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="yellowTriangle-tan-1-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="yellowTriangle-tan-1-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="yellowTriangle-tan-1-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="yellowTriangle-tan-2-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="yellowTriangle-tan-1-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-1-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-2-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-1-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-2-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-3-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-4-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-5-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-6-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-7-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-1-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-2-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-3-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-4-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-1-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-2-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-3-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-4-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-5-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-6-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-1-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-2-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-3-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-4-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-5-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-1-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-2-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-3-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-4-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-5-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-6-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-7-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-8-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-9-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-1-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-2-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-1-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-2-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-3-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-4-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="pinkTriangle-tan-5-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-1-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-2-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-1-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-2-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-3-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-4-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-5-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-1-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-2-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-3-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-4-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-5-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-1-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-2-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-3-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-4-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-5-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-6-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-7-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-1-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-2-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-3-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-4-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-1-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-2-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-3-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-4-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-5-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-6-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-1-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-2-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-3-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-4-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-5-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-1-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-2-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-3-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-4-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-5-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-6-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-7-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-8-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="redTriangle-tan-9-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-1-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-2-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-1-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-2-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-1-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-2-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-3-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-1-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-2-180" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-1-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-2-225" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-1-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-2-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-3-270" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-1-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-2-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-3-315" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-1-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-2-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="purpleTriangle-tan-3-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="square-tan-1-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="square-tan-2-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="square-tan-1-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="square-tan-2-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="square-tan-3-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="square-tan-4-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="square-tan-5-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-1-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-2-45" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-1-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-2-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-3-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-4-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-5-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-6-90" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-1-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-2-135" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-1-360" name="tan-rotation">
+                    <input class="hide_input" type="checkbox" id="polygon-tan-2-360" name="tan-rotation">
+          <label class="rotation rot" for="rotation-45" id="rot45">&#10226;</label>
+          <label class="rotation rot" for="rotation-90" id="rot90">&#10226;</label>
+          <label class="rotation rot" for="rotation-135" id="rot135">&#10226;</label>
+          <label class="rotation rot" for="rotation-180" id="rot180">&#10226;</label>
+          <label class="rotation rot" for="rotation-225" id="rot225">&#10226;</label>
+          <label class="rotation rot" for="rotation-270" id="rot270">&#10226;</label>
+          <label class="rotation rot" for="rotation-315" id="rot315">&#10226;</label>
+          <label class="rotation rot" for="rotation-360" id="rot360">&#10226;</label>
+          <label class="rotation" for="rotation-reset" id="rotReset">&#x2718;</label>
+                    <label class="blueTriangle tans" for="blueTriangle-tan" id="tanblueTrianglelab"></label>
+                    <div class="tans tan_blocked" id="tanblueTrianglelabRes"></div>
+                    <label class="yellowTriangle tans" for="yellowTriangle-tan" id="tanyellowTrianglelab"></label>
+                    <div class="tans tan_blocked" id="tanyellowTrianglelabRes"></div>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan" id="tanpinkTrianglelab"></label>
+                    <div class="tans tan_blocked" id="tanpinkTrianglelabRes"></div>
+                    <label class="redTriangle tans" for="redTriangle-tan" id="tanredTrianglelab"></label>
+                    <div class="tans tan_blocked" id="tanredTrianglelabRes"></div>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan" id="tanpurpleTrianglelab"></label>
+                    <div class="tans tan_blocked" id="tanpurpleTrianglelabRes"></div>
+                    <label class="square tans" for="square-tan" id="tansquarelab"></label>
+                    <div class="tans tan_blocked" id="tansquarelabRes"></div>
+                    <label class="polygon tans" for="polygon-tan" id="tanpolygonlab"></label>
+                    <div class="tans tan_blocked" id="tanpolygonlabRes"></div>
+                    <label class="blueTriangle tans" for="blueTriangle-tan-1-90" id="tanblueTrianglelab-1-90"></label>
+                    <label class="blueTriangle tans" for="blueTriangle-tan-1-225" id="tanblueTrianglelab-1-225"></label>
+                    <label class="blueTriangle tans" for="blueTriangle-tan-1-315" id="tanblueTrianglelab-1-315"></label>
+                    <label class="blueTriangle tans" for="blueTriangle-tan-1-360" id="tanblueTrianglelab-1-360"></label>
+                    <label class="blueTriangle tans" for="blueTriangle-tan-2-360" id="tanblueTrianglelab-2-360"></label>
+                    <label class="yellowTriangle tans" for="yellowTriangle-tan-1-135" id="tanyellowTrianglelab-1-135"></label>
+                    <label class="yellowTriangle tans" for="yellowTriangle-tan-1-225" id="tanyellowTrianglelab-1-225"></label>
+                    <label class="yellowTriangle tans" for="yellowTriangle-tan-1-270" id="tanyellowTrianglelab-1-270"></label>
+                    <label class="yellowTriangle tans" for="yellowTriangle-tan-2-270" id="tanyellowTrianglelab-2-270"></label>
+                    <label class="yellowTriangle tans" for="yellowTriangle-tan-1-360" id="tanyellowTrianglelab-1-360"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-1-45" id="tanpinkTrianglelab-1-45"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-2-45" id="tanpinkTrianglelab-2-45"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-1-90" id="tanpinkTrianglelab-1-90"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-2-90" id="tanpinkTrianglelab-2-90"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-3-90" id="tanpinkTrianglelab-3-90"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-4-90" id="tanpinkTrianglelab-4-90"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-5-90" id="tanpinkTrianglelab-5-90"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-6-90" id="tanpinkTrianglelab-6-90"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-7-90" id="tanpinkTrianglelab-7-90"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-1-135" id="tanpinkTrianglelab-1-135"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-2-135" id="tanpinkTrianglelab-2-135"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-3-135" id="tanpinkTrianglelab-3-135"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-4-135" id="tanpinkTrianglelab-4-135"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-1-180" id="tanpinkTrianglelab-1-180"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-2-180" id="tanpinkTrianglelab-2-180"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-3-180" id="tanpinkTrianglelab-3-180"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-4-180" id="tanpinkTrianglelab-4-180"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-5-180" id="tanpinkTrianglelab-5-180"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-6-180" id="tanpinkTrianglelab-6-180"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-1-225" id="tanpinkTrianglelab-1-225"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-2-225" id="tanpinkTrianglelab-2-225"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-3-225" id="tanpinkTrianglelab-3-225"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-4-225" id="tanpinkTrianglelab-4-225"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-5-225" id="tanpinkTrianglelab-5-225"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-1-270" id="tanpinkTrianglelab-1-270"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-2-270" id="tanpinkTrianglelab-2-270"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-3-270" id="tanpinkTrianglelab-3-270"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-4-270" id="tanpinkTrianglelab-4-270"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-5-270" id="tanpinkTrianglelab-5-270"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-6-270" id="tanpinkTrianglelab-6-270"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-7-270" id="tanpinkTrianglelab-7-270"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-8-270" id="tanpinkTrianglelab-8-270"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-9-270" id="tanpinkTrianglelab-9-270"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-1-315" id="tanpinkTrianglelab-1-315"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-2-315" id="tanpinkTrianglelab-2-315"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-1-360" id="tanpinkTrianglelab-1-360"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-2-360" id="tanpinkTrianglelab-2-360"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-3-360" id="tanpinkTrianglelab-3-360"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-4-360" id="tanpinkTrianglelab-4-360"></label>
+                    <label class="pinkTriangle tans" for="pinkTriangle-tan-5-360" id="tanpinkTrianglelab-5-360"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-1-45" id="tanredTrianglelab-1-45"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-2-45" id="tanredTrianglelab-2-45"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-1-90" id="tanredTrianglelab-1-90"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-2-90" id="tanredTrianglelab-2-90"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-3-90" id="tanredTrianglelab-3-90"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-4-90" id="tanredTrianglelab-4-90"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-5-90" id="tanredTrianglelab-5-90"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-1-135" id="tanredTrianglelab-1-135"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-2-135" id="tanredTrianglelab-2-135"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-3-135" id="tanredTrianglelab-3-135"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-4-135" id="tanredTrianglelab-4-135"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-5-135" id="tanredTrianglelab-5-135"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-1-180" id="tanredTrianglelab-1-180"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-2-180" id="tanredTrianglelab-2-180"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-3-180" id="tanredTrianglelab-3-180"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-4-180" id="tanredTrianglelab-4-180"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-5-180" id="tanredTrianglelab-5-180"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-6-180" id="tanredTrianglelab-6-180"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-7-180" id="tanredTrianglelab-7-180"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-1-225" id="tanredTrianglelab-1-225"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-2-225" id="tanredTrianglelab-2-225"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-3-225" id="tanredTrianglelab-3-225"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-4-225" id="tanredTrianglelab-4-225"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-1-270" id="tanredTrianglelab-1-270"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-2-270" id="tanredTrianglelab-2-270"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-3-270" id="tanredTrianglelab-3-270"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-4-270" id="tanredTrianglelab-4-270"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-5-270" id="tanredTrianglelab-5-270"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-6-270" id="tanredTrianglelab-6-270"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-1-315" id="tanredTrianglelab-1-315"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-2-315" id="tanredTrianglelab-2-315"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-3-315" id="tanredTrianglelab-3-315"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-4-315" id="tanredTrianglelab-4-315"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-5-315" id="tanredTrianglelab-5-315"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-1-360" id="tanredTrianglelab-1-360"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-2-360" id="tanredTrianglelab-2-360"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-3-360" id="tanredTrianglelab-3-360"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-4-360" id="tanredTrianglelab-4-360"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-5-360" id="tanredTrianglelab-5-360"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-6-360" id="tanredTrianglelab-6-360"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-7-360" id="tanredTrianglelab-7-360"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-8-360" id="tanredTrianglelab-8-360"></label>
+                    <label class="redTriangle tans" for="redTriangle-tan-9-360" id="tanredTrianglelab-9-360"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-1-45" id="tanpurpleTrianglelab-1-45"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-2-45" id="tanpurpleTrianglelab-2-45"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-1-90" id="tanpurpleTrianglelab-1-90"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-2-90" id="tanpurpleTrianglelab-2-90"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-1-135" id="tanpurpleTrianglelab-1-135"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-2-135" id="tanpurpleTrianglelab-2-135"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-3-135" id="tanpurpleTrianglelab-3-135"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-1-180" id="tanpurpleTrianglelab-1-180"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-2-180" id="tanpurpleTrianglelab-2-180"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-1-225" id="tanpurpleTrianglelab-1-225"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-2-225" id="tanpurpleTrianglelab-2-225"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-1-270" id="tanpurpleTrianglelab-1-270"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-2-270" id="tanpurpleTrianglelab-2-270"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-3-270" id="tanpurpleTrianglelab-3-270"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-1-315" id="tanpurpleTrianglelab-1-315"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-2-315" id="tanpurpleTrianglelab-2-315"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-3-315" id="tanpurpleTrianglelab-3-315"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-1-360" id="tanpurpleTrianglelab-1-360"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-2-360" id="tanpurpleTrianglelab-2-360"></label>
+                    <label class="purpleTriangle tans" for="purpleTriangle-tan-3-360" id="tanpurpleTrianglelab-3-360"></label>
+                    <label class="square tans" for="square-tan-1-45" id="tansquarelab-1-45"></label>
+                    <label class="square tans" for="square-tan-2-45" id="tansquarelab-2-45"></label>
+                    <label class="square tans" for="square-tan-1-90" id="tansquarelab-1-90"></label>
+                    <label class="square tans" for="square-tan-2-90" id="tansquarelab-2-90"></label>
+                    <label class="square tans" for="square-tan-3-90" id="tansquarelab-3-90"></label>
+                    <label class="square tans" for="square-tan-4-90" id="tansquarelab-4-90"></label>
+                    <label class="square tans" for="square-tan-5-90" id="tansquarelab-5-90"></label>
+                    <label class="polygon tans" for="polygon-tan-1-45" id="tanpolygonlab-1-45"></label>
+                    <label class="polygon tans" for="polygon-tan-2-45" id="tanpolygonlab-2-45"></label>
+                    <label class="polygon tans" for="polygon-tan-1-90" id="tanpolygonlab-1-90"></label>
+                    <label class="polygon tans" for="polygon-tan-2-90" id="tanpolygonlab-2-90"></label>
+                    <label class="polygon tans" for="polygon-tan-3-90" id="tanpolygonlab-3-90"></label>
+                    <label class="polygon tans" for="polygon-tan-4-90" id="tanpolygonlab-4-90"></label>
+                    <label class="polygon tans" for="polygon-tan-5-90" id="tanpolygonlab-5-90"></label>
+                    <label class="polygon tans" for="polygon-tan-6-90" id="tanpolygonlab-6-90"></label>
+                    <label class="polygon tans" for="polygon-tan-1-135" id="tanpolygonlab-1-135"></label>
+                    <label class="polygon tans" for="polygon-tan-2-135" id="tanpolygonlab-2-135"></label>
+                    <label class="polygon tans" for="polygon-tan-1-360" id="tanpolygonlab-1-360"></label>
+                    <label class="polygon tans" for="polygon-tan-2-360" id="tanpolygonlab-2-360"></label>
+          <div class="shape"></div>
+        </div>
+      </form>
+      <div class="tanagram-box"></div>
+      <div class="tanagram-box"></div>
+      <div class="tanagram-box"></div>
+      <div class="tanagram-box"></div>
+      <div class="tanagram-box"></div>
+    </div>
+  </body>
+</html>
