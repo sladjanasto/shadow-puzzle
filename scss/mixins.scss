@@ -1,0 +1,427 @@
+@mixin tanagram-boxes($nth-child-grid) {
+  @for $i from 1 through 8 {
+    @if map.has-key($nth-child-grid, $i) {
+      $values: map.get($nth-child-grid, $i);
+      &:nth-child(#{$i}) {
+        grid-column: #{list.nth($values, 1)} / #{list.nth($values, 2)};
+        grid-row: #{list.nth($values, 3)} / #{list.nth($values, 4)};
+      }
+    }
+  }
+}
+@function get-coordinates($list, $key, $separator, $unit) {
+  $position-list: null;
+  @if meta.type-of($list) == "map" {
+    @if map.has-key($list, $key) {
+      $position-list: map.get($list, $key);
+    }
+  } @else if meta.type-of($list) == "list" {
+    @if meta.type-of($key) ==
+      "number" and
+      $key >
+      0 and
+      $key <=
+      list.length($list)
+    {
+      $position-list: list.nth($list, $key);
+    }
+  } @else {
+    @error "Invalid input: First argument must be a map or a list.";
+  }
+  @if $position-list == null {
+    @return null;
+  }
+  $x: list.nth($position-list, 1);
+  $y: list.nth($position-list, -1);
+  @return #{$x}#{$unit}#{$separator}#{$y}#{$unit};
+}
+@mixin setCliPath($tanName, $values) {
+  $clip-path-points: ();
+  $clip-path-key: map.get($values, clip-path);
+  $count: list.length($clip-path-key);
+  @for $i from 1 through $count {
+    $current-point: get-coordinates($clip-path-key, $i, " ", "%");
+    $clip-path-points: list.append($clip-path-points, #{$current-point}, comma);
+  }
+  #tan#{$tanName}lab {
+    background: map.get($values, color);
+    clip-path: polygon(#{$clip-path-points});
+  }
+  .#{$tanName} {
+    clip-path: polygon(#{$clip-path-points});
+  }
+}
+@mixin setRotation($tanName, $values, $angles, $color) {
+  @each $angle in $angles {
+    & ~ #rot#{$angle} {
+      transform: translate(
+        get-coordinates($values, rot-btn-position, ",", vmin)
+      );
+      background: $color;
+    }
+    & ~ #rotation-#{$angle}:checked {
+      @each $key in map.keys($tansShapes) {
+        & ~ #tan#{$key}labRes {
+          visibility: visible;
+          background: rgba(0, 0, 0, 0.4);
+        }
+        & ~ #tan#{$key}lab {
+          opacity: 0.3;
+        }
+        & ~ #rotReset {
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
+@function normalize-angle($angle) {
+  @if $angle % 90 == 0 {
+    @return 90;
+  } @else {
+    @return 45;
+  }
+}
+@function normalize-polygon-angle($angle) {
+  @if $angle == 0 or $angle == 360 {
+    @return 0;
+  } @else if $angle % 90 == 0 {
+    @return 90;
+  } @else if ($angle % 45 == 0 and $angle % 90 != 0) {
+    @return 45;
+  } @else if ($angle % 135 == 0) {
+    @return 135;
+  } @else {
+    @return null;
+  }
+}
+
+@mixin setTansShapes($tansShapes) {
+  @each $tanName, $values in $tansShapes {
+    $color: color.scale(map.get($values, color), $lightness: 10%);
+    $angles: (45, 90, 135, 180, 225, 270, 315, 360);
+    @include setCliPath($tanName, $values);
+
+    ##{$tanName}-tan:checked {
+      & ~ #tan#{$tanName}Res {
+        visibility: hidden;
+      }
+      & ~ #tan#{$tanName}lab {
+        opacity: 1 !important;
+        background: #{$color};
+        cursor: auto;
+      }
+      @each $key in map.keys($tansShapes) {
+        & ~ #tan#{$tanName}Res:checked ~ #tan#{$key}labRes {
+          visibility: visible;
+        }
+      }
+      & ~ #rot45 {
+        display: flex;
+        visibility: visible;
+      }
+      & ~ #rotReset {
+        transform: translate(
+          get-coordinates($values, exit-mode-btn-position, ",", vmin)
+        );
+      }
+      @include setRotation($tanName, $values, $angles, $color);
+    }
+  }
+}
+
+@mixin setTansPosition($tansShapes) {
+  @each $tanName, $values in $tansShapes {
+    & ~ .shadow #tan#{$tanName}lab {
+      transform-origin: get-coordinates($values, transform-origin, " ", vmin);
+      transform: translate(get-coordinates($values, tan-position, ",", vmin))
+        rotate(360deg);
+      cursor: pointer;
+    }
+    & ~ .shadow #tan#{$tanName}labRes {
+      visibility: hidden;
+      transform: translate(
+        get-coordinates($values, diable-lab-position, ",", vmin)
+      );
+    }
+  }
+}
+@mixin setTansPossiblePositions(
+  $name,
+  $angle,
+  $possiblePositions,
+  $visibility,
+  $color,
+  $id,
+  $transformOrigin
+) {
+  @if $name == "square" {
+    $angle: normalize-angle(
+      $angle
+    ); // Normalizujemo ugao ako je u pitanju square
+  } @else if $name == "polygon" {
+    $angle: normalize-polygon-angle($angle);
+  }
+  @if map.has-key($possiblePositions, $angle) {
+    $values: map.get($possiblePositions, $angle);
+
+    @if $values != none {
+      $count: list.length($values);
+
+      @for $i from 1 through $count {
+        $position: get-coordinates($values, $i, ",", vmin);
+        & ~ #tan#{$name}lab-#{$i}-#{$angle} {
+          @if $visibility == visible {
+            visibility: visible;
+            background-color: $color;
+            opacity: 0.2;
+            z-index: 2;
+            transform-origin: #{$transformOrigin};
+            transform: translate(#{$position}) rotate(#{$angle}deg);
+          } @else if $visibility == hidden {
+            visibility: hidden;
+          }
+          &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+@mixin tansRotation {
+  @each $tanName, $values in $tansShapes {
+    $possiblePositions: map.get($values, poss-positions);
+    $possibleTansColor: map.get($values, color);
+    $validPosition: get-coordinates($values, correct-position, ",", vmin);
+    $transformOrigin: get-coordinates($values, transform-origin, " ", vmin);
+    $rotResPosition: get-coordinates(
+      $values,
+      exit-mode-btn-position,
+      ",",
+      vmin
+    );
+    $angle: 0;
+    @for $i from 1 through 8 {
+      $angle: $i * 45;
+      $nextAngle: if($angle + 45 > 360, 45, $angle + 45);
+      @include setPossiblePositionOnTask(
+        $tanName,
+        $angle,
+        $possiblePositions,
+        $possibleTansColor,
+        #{$tanName}-tan,
+        $validPosition,
+        $transformOrigin,
+        $rotResPosition
+      );
+      ##{$tanName}-tan {
+        @include setTansPossiblePositions(
+          $tanName,
+          $angle,
+          $possiblePositions,
+          hidden,
+          $possibleTansColor,
+          #{$tanName}-tan,
+          $transformOrigin
+        );
+      }
+      ##{$tanName}-tan:checked {
+        @include setTansPossiblePositions(
+          $tanName,
+          360,
+          $possiblePositions,
+          visible,
+          $possibleTansColor,
+          #{$tanName}-tan,
+          $transformOrigin
+        );
+        & ~ #rotation-#{$angle}:checked {
+          @include setTansPossiblePositions(
+            $tanName,
+            360,
+            $possiblePositions,
+            hidden,
+            $possibleTansColor,
+            #{$tanName}-tan,
+            $transformOrigin
+          );
+          & ~ #tan#{$tanName}lab {
+            transform: translate(
+                get-coordinates($values, tan-position, ",", vmin)
+              )
+              rotate(#{$angle}deg);
+          }
+          & ~ #tan#{$tanName}labRes {
+            visibility: hidden;
+          }
+          & ~ #rot#{$angle} {
+            visibility: hidden;
+          }
+          & ~ #rot#{$nextAngle} {
+            visibility: visible;
+          }
+          @include setTansPossiblePositions(
+            $tanName,
+            $angle,
+            $possiblePositions,
+            visible,
+            $possibleTansColor,
+            #{$tanName}-tan,
+            $transformOrigin
+          );
+        }
+      }
+    }
+  }
+}
+
+@mixin createListOfCorrectPositions($tansShapes) {
+  @each $tanName, $values in $tansShapes {
+    $possiblePositions: map.get($values, poss-positions);
+    @debug #{$tanName} $possiblePositions;
+  }
+}
+@include createListOfCorrectPositions($tansShapes);
+@mixin checkPosition($tanName, $angle, $position, $tansShapes, $color, $i) {
+  $correctPositions: map.get(map.get($tansShapes, $tanName), correct-position);
+  $count: list.length($correctPositions);
+  @for $i from 1 through $count {
+    $correct-position: get-coordinates($correctPositions, $i, ",", vmin);
+
+    @if $correct-position == $position {
+      $positionFound: true;
+      background-color: $color;
+      pointer-events: none;
+      animation: flash-#{$tanName} 1.5s;
+    }
+  }
+}
+
+@mixin setPossiblePositionOnTask(
+  $name,
+  $angle,
+  $possiblePositions,
+  $color,
+  $id,
+  $validPosition,
+  $transformOrigin,
+  $rotResPosition
+) {
+  @if map.has-key($possiblePositions, $angle) {
+    $values: map.get($possiblePositions, $angle);
+    $count: list.length($values);
+    $coords: map.get($tansShapes, $name);
+    @if $values != none {
+      $count: list.length($values);
+      @keyframes flash-#{$name} {
+        @each $i in (0%, 30%, 60%, 100%) {
+          #{$i} {
+            background-color: #{$color};
+          }
+        }
+        @each $j in (15%, 45%, 75%) {
+          #{$j} {
+            background-color: white;
+          }
+        }
+      }
+      @keyframes pulse-#{$name} {
+        0% {
+          transform: translate(#{$rotResPosition}) scale(1);
+        }
+        50% {
+          transform: translate(#{$rotResPosition}) scale(1.5);
+        }
+        100% {
+          transform: translate(#{$rotResPosition}) scale(1);
+        }
+      }
+      @for $i from 1 through $count {
+        $position: get-coordinates($values, $i, ",", vmin);
+        ##{$name}-tan:checked {
+          & ~ ##{$id}-#{$i}-#{$angle}:checked {
+            & ~ .rot {
+              pointer-events: none;
+              background: gray;
+              color: white;
+              opacity: 0;
+            }
+            & ~ #rotReset {
+              animation: pulse-#{$name} 1s ease-in-out infinite;
+            }
+          }
+        }
+        ##{$id}-#{$i}-#{$angle}:checked {
+          & ~ #tan#{$name}lab {
+            transform: translate(#{$position}) rotate(#{$angle}deg) !important;
+            pointer-events: none;
+          }
+          & ~ #tan#{$name}lab-#{$i}-#{$angle} {
+            background-color: $color;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform-origin: #{$transformOrigin};
+            transform: translate(#{$position}) rotate(#{$angle}deg) !important;
+            @include checkPosition(
+              $name,
+              $angle,
+              $position,
+              $tansShapes,
+              $color,
+              $i
+            );
+          }
+          @for $j from 1 through $count {
+            @if $j != $i {
+              & ~ #tan#{$name}lab-#{$j}-#{$angle} {
+                visibility: hidden !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin display(
+  $display: flex,
+  $align-items: center,
+  $justify-content: center,
+  $align-self: center,
+  $justify-self: center
+) {
+  display: $display;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  position: relative;
+  align-self: $align-self;
+  justify-self: $justify-self;
+}
+@mixin position($position, $x, $y) {
+  position: $position;
+  transform: translate($x, $y);
+}
+@mixin size($width) {
+  width: $width;
+  max-width: $width;
+  aspect-ratio: 1 / 1;
+  aspect-ratio: 1;
+}
+@mixin button-style($bg-color, $hover-color, $width) {
+  padding: 2vmin 0.5vmin;
+  background-color: color.scale($bg-color, $lightness: 10%);
+  font-size: 1.5vmin;
+  font-family: "Lexend Giga", serif;
+  border: none;
+  border-radius: 5vmin;
+  cursor: pointer;
+  text-align: center;
+  min-width: $width;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: color.scale($bg-color, $lightness: 20%);
+  }
+}

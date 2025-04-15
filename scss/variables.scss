@@ -1,0 +1,595 @@
+$colors: (
+  blue-color: #53a0e0,
+  yellow-color: #f7db4f,
+  red-color: #cf304f,
+  pink-color: #e995c3,
+  purple-color: #9156e8,
+  square: #f7a241,
+  polygon: #49ae9f,
+  black: #333333,
+);
+$nth-child-grid: (
+  1: (
+    2,
+    3,
+    1,
+    2,
+  ),
+  2: (
+    3,
+    4,
+    1,
+    2,
+  ),
+  4: (
+    1,
+    2,
+    2,
+    3,
+  ),
+  5: (
+    4,
+    4,
+    2,
+    3,
+  ),
+  6: (
+    1,
+    2,
+    3,
+    4,
+  ),
+  7: (
+    4,
+    4,
+    3,
+    4,
+  ),
+  8: (
+    2,
+    3,
+    4,
+    5,
+  ),
+);
+$bluePosiblePositions: (
+  45: none,
+  90: (
+    (6.7, 11.2),
+  ),
+  135: none,
+  180: none,
+  225: (
+    (6.4, 14),
+  ),
+  270: none,
+  315: (
+    (18.8, 13.3),
+  ),
+  360: (
+    (4.7, 13.5),
+    (11, 7),
+  ),
+);
+$yellowPosiblePositions: (
+  45: none,
+  90: none,
+  135: (
+    (-2, 22.5),
+  ),
+  180: none,
+  225: (
+    (10.5, 21.7),
+  ),
+  270: (
+    (-3.8, 22),
+    (2.8, 15.5),
+  ),
+  315: none,
+  360: (
+    (-1.5, 19.5),
+  ),
+);
+$pinkPosiblePositions: (
+  45: (
+    (-10.7, -12.7),
+    (-8, 6),
+  ),
+  90: (
+    (-11.8, -3),
+    (-5.8, 15.5),
+    (0.5, -3.4),
+    (0.3, 9.3),
+    (9.5, 0.5),
+    (12.2, 3),
+    (-5.8, 3),
+  ),
+  135: (
+    (-4.5, -3.5),
+    (4.5, 0),
+    (1.5, 6.2),
+    (13.5, 9),
+  ),
+  180: (
+    (-14, -13.5),
+    (-7.8, 5),
+    (-1.6, 11.4),
+    (10, 10.5),
+    (-1.5, -1.3),
+    (10, 5.2),
+  ),
+  225: (
+    (-11, 0.5),
+    (1.6, -3.5),
+    (10.5, 0),
+    (-1.5, 6.5),
+    (7.5, 6.5),
+  ),
+  270: (
+    (-9.8, -9.4),
+    (-9.8, 3),
+    (-3.5, -3.5),
+    (-3.5, 9),
+    (5.5, 0.5),
+    (2.5, 3),
+    (8.7, 9),
+    (14.5, 9.3),
+    (14.5, 15),
+  ),
+  315: (
+    (-5, 16),
+    (10.5, 6),
+  ),
+  360: (
+    (-1.5, -5.5),
+    (7.5, -1.5),
+    (-7.6, 1.5),
+    (10.3, 1.3),
+    (-1.8, 7.1),
+  ),
+);
+$purplePosiblePositions: (
+  45: (
+    (-10, 5.5),
+    (-0.5, 2.5),
+  ),
+  90: (
+    (-12, 0.7),
+    (0, 1),
+  ),
+  135: (
+    (-12.5, -5),
+    (-4, -1),
+    (5.2, 7.8),
+  ),
+  180: (
+    (-12, 9.5),
+    (-12, -3),
+  ),
+  225: (
+    (-9.7, -8),
+    (-0.8, -3.9),
+  ),
+  270: (
+    (-14, 3),
+    (-20.3, -15.5),
+    (4, 8.5),
+  ),
+  315: (
+    (-13.5, 9),
+    (-6.7, -4.7),
+    (2, -1),
+  ),
+  360: (
+    (-13.8, -5.6),
+    (-5, -1.5),
+    (-8, 1),
+  ),
+);
+$redPosiblePositions: (
+  45: (
+    (-15.5, 26.5),
+    (0, 16.5),
+  ),
+  90: (
+    (-12, 5),
+    (-3, 9),
+    (-18, 11.5),
+    (0, 17.5),
+    (-12, 17.5),
+  ),
+  135: (
+    (-21, -2.3),
+    (-18.5, 16.5),
+    (-8.5, 10),
+    (3, 25.5),
+    (3, 16.5),
+  ),
+  180: (
+    (-22.3, 7.5),
+    (-16.3, 26),
+    (-16.3, 13.5),
+    (-9.7, 19.5),
+    (-9.7, 7),
+    (-1, 11),
+    (2, 13.6),
+  ),
+  225: (
+    (-14.8, 6.5),
+    (-6, 10.5),
+    (-9, 17),
+    (3, 19.5),
+  ),
+  270: (
+    (-24.5, -3.2),
+    (-18.1, 15.6),
+    (-12, 21.5),
+    (-12, 9.2),
+    (-0.5, 15.5),
+    (-0.4, 21),
+  ),
+  315: (
+    (-9, 6.7),
+    (0, 10.5),
+    (-12, 16.8),
+    (-3, 16.8),
+    (-21.5, 10.7),
+  ),
+  360: (
+    (-20.1, 13.6),
+    (-14, 7.3),
+    (-5, 11),
+    (-20.2, 1.1),
+    (4, 19.5),
+    (4, 25),
+    (-8, 13.5),
+    (-1.6, 19.7),
+    (-14, 19.6),
+  ),
+);
+$squarePosiblePositions: (
+  45: (
+    (-10, 9),
+    (6, 11.5),
+  ),
+  90: (
+    (-7.7, 1),
+    (-14, 7.5),
+    (-1.5, 7.4),
+    (-8, 13.5),
+    (1.2, 4.8),
+  ),
+);
+$polygonPosiblePositions: (
+  45: (
+    (-2, -4),
+    (7, -4),
+  ),
+  90: (
+    (5, -5),
+    (16.5, 6, 5),
+    (16, 5, 1),
+    (-7.8, -5.2),
+    (11, 1),
+    (-1.5, 1),
+  ),
+  135: (
+    (-0.5, 8),
+    (6, -2),
+  ),
+  360: (
+    (-1.5, -5.5),
+    (10, 1),
+  ),
+);
+$tansShapes: (
+  blueTriangle: (
+    color: map.get($colors, blue-color),
+    clip-path: (
+      0 0,
+      50 50,
+      0 100,
+    ),
+    rot-btn-position: (
+      -20,
+      -25,
+    ),
+    exit-mode-btn-position: (
+      -20,
+      -33,
+    ),
+    tan-position: (
+      -6,
+      -37,
+    ),
+    diable-lab-position: (
+      -12,
+      -38,
+    ),
+    poss-positions: $bluePosiblePositions,
+    correct-position: (
+      (4.7, 13.5),
+      (18.8, 13.3),
+    ),
+    transform-origin: (
+      4.17,
+      12.5,
+    ),
+  ),
+  yellowTriangle: (
+    color: map.get($colors, yellow-color),
+    clip-path: (
+      0 0,
+      100 0,
+      50 50,
+    ),
+    rot-btn-position: (
+      41,
+      -21,
+    ),
+    exit-mode-btn-position: (
+      49,
+      -21,
+    ),
+    tan-position: (
+      38,
+      -5,
+    ),
+    diable-lab-position: (
+      38,
+      -13,
+    ),
+    poss-positions: $yellowPosiblePositions,
+    correct-position: (
+      (10.5, 21.7),
+      (-3.8, 22),
+    ),
+    transform-origin: (
+      12.5,
+      4.17,
+    ),
+  ),
+  pinkTriangle: (
+    color: map.get($colors, pink-color),
+    clip-path: (
+      25 75,
+      75 75,
+      50 50,
+    ),
+    rot-btn-position: (
+      40,
+      -25,
+    ),
+    exit-mode-btn-position: (
+      40,
+      -33,
+    ),
+    tan-position: (
+      13,
+      -42,
+    ),
+    diable-lab-position: (
+      13,
+      -38,
+    ),
+    poss-positions: $pinkPosiblePositions,
+    correct-position: (
+      (-14, -13.5),
+      (4.5, 0),
+      (10.5, 0),
+      (-9.8, -9.4),
+    ),
+    transform-origin: (
+      12.5,
+      16.67,
+    ),
+  ),
+  purpleTriangle: (
+    color: map.get($colors, purple-color),
+    clip-path: (
+      50 100,
+      100 100,
+      100 50,
+    ),
+    rot-btn-position: (
+      41,
+      38,
+    ),
+    exit-mode-btn-position: (
+      49,
+      38,
+    ),
+    tan-position: (
+      31,
+      5,
+    ),
+    diable-lab-position: (
+      38,
+      12,
+    ),
+    poss-positions: $purplePosiblePositions,
+    correct-position: (
+      (-0.8, -3.9),
+      (-20.3, -15.5),
+    ),
+    transform-origin: (
+      20.83,
+      20.83,
+    ),
+  ),
+  redTriangle: (
+    color: map.get($colors, red-color),
+    clip-path: (
+      100 0,
+      100 50,
+      75 25,
+    ),
+    rot-btn-position: (
+      14,
+      41,
+    ),
+    exit-mode-btn-position: (
+      14,
+      49,
+    ),
+    tan-position: (
+      -22,
+      44,
+    ),
+    diable-lab-position: (
+      -12,
+      37,
+    ),
+    poss-positions: $redPosiblePositions,
+    correct-position: (
+      (-20.2, 1.1),
+      (-24.5, -3.2),
+      (-6, 10.5),
+      (0, 10.5),
+    ),
+    transform-origin: (
+      22.92,
+      6.25,
+    ),
+  ),
+  square: (
+    color: map.get($colors, square),
+    clip-path: (
+      75 75,
+      100 50,
+      75 25,
+      50 50,
+    ),
+    rot-btn-position: (
+      -22,
+      39,
+    ),
+    exit-mode-btn-position: (
+      -30,
+      39,
+    ),
+    tan-position: (
+      -43.5,
+      12,
+    ),
+    diable-lab-position: (
+      -37,
+      12,
+    ),
+    poss-positions: $squarePosiblePositions,
+    correct-position: (
+      (-7.7, 1),
+    ),
+    transform-origin: (
+      18.75,
+      12.5,
+    ),
+  ),
+  polygon: (
+    color: map.get($colors, polygon),
+    clip-path: (
+      50 100,
+      75 75,
+      25 75,
+      0 100,
+    ),
+    rot-btn-position: (
+      -22,
+      -22,
+    ),
+    exit-mode-btn-position: (
+      -30,
+      -22,
+    ),
+    tan-position: (
+      -35,
+      -22,
+    ),
+    diable-lab-position: (
+      -37,
+      -13,
+    ),
+    poss-positions: $polygonPosiblePositions,
+    correct-position: (
+      (-7.8, -5.2),
+    ),
+    transform-origin: (
+      9.37,
+      21.88,
+    ),
+  ),
+);
+$winningCombinations: (
+  combo1: (
+    (blueTriangle, 1, 360),
+    (yellowTriangle, 1, 225),
+    (pinkTriangle, 1, 180),
+    (redTriangle, 4, 360),
+    (purpleTriangle, 2, 225),
+    (square, 1, 90),
+    (polygon, 4, 90),
+  ),
+  combo2: (
+    (blueTriangle, 1, 360),
+    (yellowTriangle, 1, 225),
+    (pinkTriangle, 1, 270),
+    (redTriangle, 1, 270),
+    (purpleTriangle, 2, 225),
+    (square, 1, 90),
+    (polygon, 4, 90),
+  ),
+  combo3: (
+    (blueTriangle, 1, 360),
+    (yellowTriangle, 1, 225),
+    (pinkTriangle, 3, 225),
+    (redTriangle, 2, 225),
+    (purpleTriangle, 2, 270),
+    (square, 1, 90),
+    (polygon, 4, 90),
+  ),
+  combo4: (
+    (blueTriangle, 1, 360),
+    (yellowTriangle, 1, 225),
+    (pinkTriangle, 2, 135),
+    (redTriangle, 2, 315),
+    (purpleTriangle, 2, 270),
+    (square, 1, 90),
+    (polygon, 4, 90),
+  ),
+  combo5: (
+    (blueTriangle, 1, 315),
+    (yellowTriangle, 1, 270),
+    (pinkTriangle, 1, 180),
+    (redTriangle, 4, 360),
+    (purpleTriangle, 2, 225),
+    (square, 1, 90),
+    (polygon, 4, 90),
+  ),
+  combo6: (
+    (blueTriangle, 1, 315),
+    (yellowTriangle, 1, 270),
+    (pinkTriangle, 1, 270),
+    (redTriangle, 1, 270),
+    (purpleTriangle, 2, 225),
+    (square, 1, 90),
+    (polygon, 4, 90),
+  ),
+  combo7: (
+    (blueTriangle, 1, 315),
+    (yellowTriangle, 1, 270),
+    (pinkTriangle, 3, 225),
+    (redTriangle, 2, 225),
+    (purpleTriangle, 2, 270),
+    (square, 1, 90),
+    (polygon, 4, 90),
+  ),
+  combo8: (
+    (blueTriangle, 1, 315),
+    (yellowTriangle, 1, 270),
+    (pinkTriangle, 2, 135),
+    (redTriangle, 2, 315),
+    (purpleTriangle, 2, 270),
+    (square, 1, 90),
+    (polygon, 4, 90),
+  ),
+);

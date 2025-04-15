@@ -1,353 +1,125 @@
-@use "sass:color"; @use "sass:list"; @use "sass:map"; @use 'sass:meta';
-$colors: ( blue-color: #53a0e0, yellow-color: #f7db4f, red-color: #cf304f, pink-color: #e995c3, purple-color: #9156e8, square: #f7a241, polygon: #49ae9f, black: #333333 );
-$nth-child-grid: (1: (2, 3, 1, 2),2: (3, 4, 1, 2),4: (1, 2, 2, 3),5: (4, 4, 2, 3),6: (1, 2, 3, 4),7: (4, 4, 3, 4),8: (2, 3, 4, 5));
-$bluePosiblePositions: (45: none,90: ((6.7, 11.2), ),135: none,180: none,225: ((6.4, 14),),270: none,315: ((18.8, 13.3), ),360: ((4.7, 13.5), (11, 7)));
-$yellowPosiblePositions: (45: none,90: none,135: ((-2, 22.5),),180: none,225: ((10.5, 21.7),),270: ((-3.8, 22), (2.8, 15.5)),315: none,360: ((-1.5, 19.5),));
-$pinkPosiblePositions: (45: ((-10.7, -12.7),(-8, 6)),90: ((-11.8, -3),(-5.8, 15.5),(0.5, -3.4),(0.3, 9.3),(9.5, 0.5),(12.2, 3),(-5.8, 3)),135: ((-4.5, -3.5), (4.5, 0), (1.5, 6.2), (13.5, 9)),180: ((-14, -13.5),(-7.8, 5),(-1.6, 11.4),(10, 10.5),(-1.5, -1.3),(10, 5.2)),225: ((-11, 0.5),(1.6, -3.5),(10.5, 0),(-1.5, 6.5), (7.5, 6.5)),270: ((-9.8, -9.4),(-9.8, 3),(-3.5, -3.5),(-3.5, 9),(5.5, 0.5),(2.5, 3),(8.7, 9),(14.5, 9.3),(14.5, 15)),315: ((-5, 16), (10.5, 6)),360: ((-1.5, -5.5),(7.5, -1.5),(-7.6, 1.5),(10.3, 1.3),(-1.8, 7.1)));
-$purplePosiblePositions: (45: ((-10, 5.5),(-0.5, 2.5)),90: ((-12, 0.7),(0, 1)),135: ((-12.5, -5), (-4, -1), (5.2, 7.8)),180: ((-12, 9.5),(-12, -3)),225: ((-9.7, -8),(-0.8, -3.9)),270: ((-14, 3),(-20.3, -15.5),(4, 8.5)),315: ((-13.5, 9),(-6.7, -4.7),(2, -1)),360: ((-13.8, -5.6),(-5, -1.5),(-8, 1)));
-$redPosiblePositions: (45: ((-15.5, 26.5), (0, 16.5)),90: ((-12, 5),(-3, 9),(-18, 11.5),(0, 17.5),(-12, 17.5)),135: ((-21, -2.3),(-18.5, 16.5),(-8.5, 10),(3, 25.5),(3, 16.5)),180: ((-22.3, 7.5),(-16.3, 26),(-16.3, 13.5),(-9.7, 19.5),(-9.7, 7),(-1, 11),(2, 13.6)),225: ((-14.8, 6.5), (-6, 10.5), (-9, 17), (3, 19.5)),270: ((-24.5, -3.2),(-18.1, 15.6),(-12, 21.5),(-12, 9.2),(-0.5, 15.5),(-0.4, 21)),315: ((-9, 6.7),(0, 10.5),(-12, 16.8),(-3, 16.8), (-21.5, 10.7)),360: ((-20.1, 13.6),(-14, 7.3),(-5, 11),(-20.2, 1.1),(4, 19.5),(4, 25),(-8, 13.5), (-1.6, 19.7), (-14, 19.6)));
-$squarePosiblePositions:(45: ((-10, 9), (6, 11.5)),90: ((-7.7, 1), (-14, 7.5), (-1.5, 7.4), (-8, 13.5), (1.2, 4.8)));
-$polygonPosiblePositions:(45: ((-2, -4), (7, -4)),90: ((5, -5),(16.5, 6,5),(16,5, 1),(-7.8, -5.2),(11, 1),(-1.5, 1)),135: ((-0.5, 8), (6, -2)), 360: ((-1.5, -5.5), (10, 1)));
-$tansShapes:( blueTriangle: (color: map.get($colors, blue-color) , clip-path:(0 0, 50 50, 0 100), rot-btn-position: (-20, -25), exit-mode-btn-position:(-20, -33), tan-position:(-6, -37), diable-lab-position:(-12, -38), poss-positions: $bluePosiblePositions, correct-position: ((4.7, 13.5), (18.8, 13.3)), transform-origin: (4.17, 12.5)), yellowTriangle: (color: map.get($colors, yellow-color), clip-path: (0 0, 100 0, 50 50), rot-btn-position: (41, -21), exit-mode-btn-position: (49, -21), tan-position: (38, -5), diable-lab-position: (38, -13),poss-positions: $yellowPosiblePositions, correct-position: ((10.5, 21.7), (-3.8, 22)), transform-origin: (12.5, 4.17)), pinkTriangle: (color: map.get($colors, pink-color), clip-path: (25 75, 75 75, 50 50), rot-btn-position: (40, -25), exit-mode-btn-position: (40, -33), tan-position: (13, -42 ), diable-lab-position: (13, -38), poss-positions: $pinkPosiblePositions, correct-position: ((-14, -13.5),(4.5, 0),(10.5, 0), (-9.8, -9.4)), transform-origin: (12.5, 16.67)), purpleTriangle: (color: map.get($colors, purple-color), clip-path: (50 100, 100 100, 100 50),rot-btn-position: (41, 38), exit-mode-btn-position: (49, 38), tan-position: (31, 5), diable-lab-position: (38, 12), poss-positions: $purplePosiblePositions, correct-position: ((-0.8, -3.9), (-20.3, -15.5)), transform-origin: (20.83, 20.83)), redTriangle: (color: map.get($colors, red-color), clip-path: (100 0, 100 50, 75 25), rot-btn-position: (14, 41), exit-mode-btn-position: (14, 49),  tan-position: (-22, 44),  diable-lab-position: (-12, 37), poss-positions: $redPosiblePositions, correct-position: ((-20.2,1.1),(-24.5, -3.2),(-6,10.5), (0,10.5)), transform-origin: (22.92, 6.25)), square: (color: map.get($colors, square), clip-path: (75 75, 100 50, 75 25, 50 50), rot-btn-position: (-22, 39), exit-mode-btn-position: (-30, 39), tan-position: (-43.5, 12), diable-lab-position: (-37, 12), poss-positions: $squarePosiblePositions, correct-position: ((-7.7, 1)), transform-origin: (18.75, 12.5)), polygon: (color: map.get($colors, polygon),clip-path: (50 100, 75 75, 25 75, 0 100), rot-btn-position: (-22, -22), exit-mode-btn-position: (-30, -22), tan-position: (-35, -22) ,diable-lab-position: (-37, -13), poss-positions:$polygonPosiblePositions, correct-position: ((-7.8,-5.2)), transform-origin: (9.37, 21.88)),);
-$winningCombinations: ( combo1: ((blueTriangle,1,360), (yellowTriangle,1,225), (pinkTriangle,1,180), (redTriangle,4,360), (purpleTriangle,2,225), (square,1,90), (polygon,4,90)),combo2: ((blueTriangle,1,360), (yellowTriangle,1,225), (pinkTriangle,1,270), (redTriangle,1,270), (purpleTriangle,2,225), (square,1,90), (polygon,4,90)),combo3: ((blueTriangle,1,360), (yellowTriangle,1,225), (pinkTriangle,3,225), (redTriangle,2,225), (purpleTriangle,2,270), (square,1,90), (polygon,4,90)),combo4: ((blueTriangle,1,360), (yellowTriangle,1,225), (pinkTriangle,2,135), (redTriangle,2,315), (purpleTriangle,2,270), (square,1,90), (polygon,4,90)),combo5: ((blueTriangle,1,315), (yellowTriangle,1,270), (pinkTriangle,1,180), (redTriangle,4,360), (purpleTriangle,2,225), (square,1,90), (polygon,4,90)),combo6: ((blueTriangle,1,315), (yellowTriangle,1,270), (pinkTriangle,1,270), (redTriangle,1,270), (purpleTriangle,2,225), (square,1,90), (polygon,4,90)),combo7: ((blueTriangle,1,315), (yellowTriangle,1,270), (pinkTriangle,3,225), (redTriangle,2,225), (purpleTriangle,2,270), (square,1,90), (polygon,4,90)),combo8: ((blueTriangle,1,315), (yellowTriangle,1,270), (pinkTriangle,2,135),(redTriangle,2,315), (purpleTriangle,2,270), (square,1,90), (polygon,4,90)));
-@mixin tanagram-boxes($nth-child-grid){
-  @for $i from 1 through  8 {
-    @if map.has-key($nth-child-grid, $i) {
-      $values: map.get($nth-child-grid, $i);
-      &:nth-child(#{$i}) { grid-column: #{list.nth($values, 1)} / #{list.nth($values, 2)}; grid-row: #{list.nth($values, 3)} / #{list.nth($values, 4)};}
-    }
-  }
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@import "scss/variables.scss";
+@import "scss/mixins.scss";
+html {
+  touch-action: manipulation;
 }
-@function get-coordinates($list, $key, $separator, $unit) {
-  $position-list: null;
-  @if meta.type-of($list) == "map" {
-    @if map.has-key($list, $key) { $position-list: map.get($list, $key); }} 
-    @else if meta.type-of($list) == "list" {
-      @if meta.type-of($key) == "number" and $key > 0 and $key <= list.length($list) { $position-list: list.nth($list, $key); }} 
-      @else { @error "Invalid input: First argument must be a map or a list."; }
-    @if $position-list == null { @return null; }
-    $x: list.nth($position-list, 1);
-    $y: list.nth($position-list, -1);
-  @return #{$x}#{$unit}#{$separator}#{$y}#{$unit};
-}
-@mixin setCliPath($tanName, $values){
-  $clip-path-points: ();
-  $clip-path-key: map.get($values, clip-path);
-  $count: list.length($clip-path-key);
-  @for $i from 1 through $count{   
-    $current-point: get-coordinates($clip-path-key,$i ," " ,'%' );
-    $clip-path-points: list.append($clip-path-points , #{$current-point}, comma );
-  } 
-  #tan#{$tanName}lab{
-    background: map.get($values, color);
-    clip-path: polygon(#{$clip-path-points});
-  }
-  .#{$tanName}{ clip-path: polygon(#{$clip-path-points}); }
-}
-@mixin setRotation($tanName, $values, $angles, $color){
-  @each $angle in $angles{
-    & ~ #rot#{$angle}{ transform: translate(get-coordinates($values,rot-btn-position,',',vmin )); background: $color;}
-    & ~ #rotation-#{$angle}:checked{
-      @each $key in map.keys($tansShapes){
-        & ~ #tan#{$key}labRes{ visibility: visible; background:rgba(0,0,0,0.4); }
-        & ~ #tan#{$key}lab{ opacity:.3; }
-        & ~ #rotReset{ visibility: visible; }
-      } 
-    }
-  }
-}
-@function normalize-angle($angle) {
-  @if $angle % 90 == 0 { @return 90; }
-  @else { @return 45;}
-}
-@function normalize-polygon-angle($angle) {
-  @if $angle == 0 or $angle == 360 { @return 0;} 
-  @else if $angle % 90 == 0 { @return 90; } 
-  @else if ($angle % 45 == 0 and $angle % 90 != 0) { @return 45; } 
-  @else if ($angle % 135 == 0) { @return 135; } 
-  @else { @return null;}
-}
-
-
-@mixin setTansShapes($tansShapes) {
-  @each $tanName, $values in $tansShapes{
-    $color: color.scale(map.get($values, color), $lightness: 10%); 
-    $angles: (45, 90, 135, 180, 225, 270, 315, 360); 
-    @include setCliPath($tanName, $values);
-
-    ##{$tanName}-tan:checked{
-      & ~ #tan#{$tanName}Res{ visibility:hidden; }
-      & ~ #tan#{$tanName}lab{opacity: 1 !important;background: #{$color};cursor:auto;}
-      @each $key in map.keys($tansShapes){
-          & ~ #tan#{$tanName}Res:checked ~ #tan#{$key}labRes{visibility: visible;}
-      }
-      & ~  #rot45{display: flex;visibility: visible;}
-      & ~ #rotReset{ transform: translate(get-coordinates($values, exit-mode-btn-position,',', vmin)); }
-      @include setRotation($tanName, $values, $angles, $color);
-    }  
-  }
-}
-
-@mixin setTansPosition($tansShapes){
-  @each $tanName, $values in $tansShapes{
-    & ~ .shadow #tan#{$tanName}lab{
-      transform-origin: get-coordinates($values, transform-origin,' ' ,vmin);
-      transform: translate( get-coordinates($values,tan-position,',', vmin)) rotate(360deg) ;
-      cursor: pointer;
-    }
-    & ~ .shadow #tan#{$tanName}labRes{
-      visibility:hidden;
-      transform: translate(get-coordinates($values,diable-lab-position,',',vmin)); 
-    }
-  }
-}
-@mixin setTansPossiblePositions($name, $angle, $possiblePositions, $visibility, $color, $id,$transformOrigin) {
-  @if $name == 'square' {
-    $angle: normalize-angle($angle); // Normalizujemo ugao ako je u pitanju square
-  } @else if $name == 'polygon'{
-    $angle: normalize-polygon-angle($angle);
-  }
-  @if map.has-key($possiblePositions, $angle) {
-    $values: map.get($possiblePositions, $angle);
-
-    @if $values != none {
-      $count: list.length($values);
-
-      @for $i from 1 through $count {
-        $position: get-coordinates($values, $i, ',', vmin);
-        & ~ #tan#{$name}lab-#{$i}-#{$angle} { 
-          @if $visibility == visible {
-            visibility: visible;
-            background-color: $color;
-            opacity: .2;
-            z-index: 2;
-            transform-origin: #{$transformOrigin};
-            transform: translate(#{$position}) rotate(#{$angle}deg);
-          } @else if $visibility == hidden { visibility: hidden; }
-          &:hover{ opacity: 0.5; cursor: pointer; }
-        }
-      }
-    }
-  }
-}
-@mixin tansRotation{
-  @each $tanName, $values in $tansShapes{
-    $possiblePositions: map.get($values, poss-positions);
-    $possibleTansColor: map.get($values, color);
-    $validPosition: get-coordinates($values, correct-position,',' ,vmin);
-    $transformOrigin: get-coordinates($values,transform-origin,' ' ,vmin); 
-    $rotResPosition: get-coordinates($values,exit-mode-btn-position ,',' ,vmin );
-    $angle: 0;
-    @for $i from 1 through 8{
-      $angle: $i * 45;
-      $nextAngle: if($angle + 45 > 360, 45, $angle + 45);
-      @include setPossiblePositionOnTask($tanName,$angle, $possiblePositions,$possibleTansColor, #{$tanName}-tan, $validPosition,$transformOrigin, $rotResPosition);   
-        ##{$tanName}-tan{
-        @include setTansPossiblePositions($tanName,$angle, $possiblePositions,hidden, $possibleTansColor, #{$tanName}-tan,$transformOrigin)
-      }
-        ##{$tanName}-tan:checked{
-          @include setTansPossiblePositions($tanName,360, $possiblePositions,visible, $possibleTansColor, #{$tanName}-tan,$transformOrigin);
-          & ~ #rotation-#{$angle}:checked {
-            @include setTansPossiblePositions($tanName,360, $possiblePositions,hidden, $possibleTansColor, #{$tanName}-tan,$transformOrigin);
-            & ~ #tan#{$tanName}lab{transform:translate( get-coordinates($values,tan-position,',', vmin))  rotate(#{$angle}deg) ;}
-            & ~ #tan#{$tanName}labRes{ visibility: hidden; }
-            & ~ #rot#{$angle}{ visibility: hidden; }
-            & ~ #rot#{$nextAngle}{ visibility: visible } 
-            @include setTansPossiblePositions($tanName,$angle, $possiblePositions,visible, $possibleTansColor, #{$tanName}-tan,$transformOrigin);
-        }
-        }
-    }
-  }
-}
-
- @mixin createListOfCorrectPositions($tansShapes){
-  @each $tanName, $values in $tansShapes{
-    $possiblePositions: map.get($values, poss-positions);
-    @debug #{$tanName} $possiblePositions;
-  }
- }
- @include createListOfCorrectPositions($tansShapes);
-@mixin checkPosition($tanName, $angle, $position, $tansShapes, $color, $i) {
-  $correctPositions: map.get(map.get($tansShapes, $tanName), correct-position);
-  $count: list.length($correctPositions);
-  @for $i from 1 through $count {
-    $correct-position: get-coordinates($correctPositions, $i, ',', vmin);
-    
-    @if $correct-position == $position {
-      $positionFound: true;
-      background-color: $color;
-      pointer-events: none;
-      animation: flash-#{$tanName} 1.5s; 
-    }
-}
-} 
-
-@mixin setPossiblePositionOnTask($name, $angle, $possiblePositions, $color, $id, $validPosition,$transformOrigin, $rotResPosition){
-  @if map.has-key($possiblePositions, $angle) {
-    $values: map.get($possiblePositions, $angle);
-    $count: list.length($values);
-    $coords: map.get($tansShapes, $name);
-    @if $values != none {
-      $count: list.length($values);
-      @keyframes flash-#{$name} {
-        @each $i in (0%, 30%, 60%, 100%) {#{$i} { background-color: #{$color}; }}
-        @each $j in (15%, 45%, 75%) {#{$j} { background-color: white; }}
-    }
-    @keyframes pulse-#{$name} {
-      0%{ transform: translate(#{$rotResPosition}) scale(1);}
-      50%{  transform: translate(#{$rotResPosition}) scale(1.5);}
-      100%{ transform: translate(#{$rotResPosition}) scale(1);}
-    }
-      @for $i from 1 through $count{
-        $position: get-coordinates($values,$i ,',' ,vmin );
-        ##{$name}-tan:checked{
-          & ~ ##{$id}-#{$i}-#{$angle}:checked{
-            & ~ .rot{ pointer-events: none;background:gray; color:white;opacity:0;}
-            & ~ #rotReset{ animation: pulse-#{$name} 1s ease-in-out infinite;} 
-          }
-        }
-        ##{$id}-#{$i}-#{$angle}:checked{  
-          & ~ #tan#{$name}lab{
-            transform: translate(#{$position}) rotate(#{$angle}deg) !important;
-            pointer-events: none;
-          }
-          & ~ #tan#{$name}lab-#{$i}-#{$angle}{
-              background-color: $color;
-              visibility: visible !important;
-              opacity:1 !important;
-              transform-origin: #{$transformOrigin}; 
-              transform: translate(#{$position}) rotate(#{$angle}deg) !important;
-              @include checkPosition($name, $angle, $position, $tansShapes, $color, $i);
-          }         
-            @for $j from 1 through $count {
-              @if $j != $i { 
-                & ~ #tan#{$name}lab-#{$j}-#{$angle} { visibility: hidden !important; }
-              }
-            }
-        }
-      }
-    }
-  }
-}   
-
-@mixin display( $display:flex, $align-items:center, $justify-content:center, $align-self:center, $justify-self:center){
-    display: $display;
-    align-items: $align-items;
-    justify-content: $justify-content;
-    position:relative;
-    align-self: $align-self;
-    justify-self: $justify-self;
-}
-@mixin position($position, $x, $y){ position: $position; transform: translate($x, $y);}
-@mixin size($width) {
-  width: $width;
-  max-width: $width;
-  aspect-ratio: 1 / 1 ;
-  aspect-ratio: 1;
-}
-@mixin button-style($bg-color, $hover-color, $width) {
-  padding: 2vmin 0.5vmin;
-  background-color: color.scale($bg-color, $lightness: 10%);
-  font-size: 1.5vmin;
-  font-family: "Lexend Giga", serif;
-  border: none;
-  border-radius: 5vmin;
-  cursor: pointer;
-  text-align: center;
-  min-width: $width;
-  transition: background-color 0.3s ease;
-  &:hover { background-color: color.scale($bg-color, $lightness: 20%); }
-}
-html{ touch-action: manipulation;}
-body{
+body {
   background: color.scale(black, $lightness: 2%);
-  max-height:100vh;
- padding:0;
- margin:0;
+  max-height: 100vh;
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
   @include display;
   overflow: hidden;
 }
-.wrapper{
-    @include size(100vmin);
-    display:grid;
-    position: relative;
+.wrapper {
+  @include size(100vmin);
+  display: grid;
+  position: relative;
 }
-.container{
+.container {
+  @include size(40vmin);
+  @include display;
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+  box-sizing: border-box;
+}
+.shadow {
+  @include size(25vmin);
+  position: relative;
+  .shape {
+    visibility: hidden;
     @include size(40vmin);
-    @include display;
-    grid-column: 2 / 4; 
-    grid-row: 2 / 4; 
-    box-sizing: border-box;
+    background: color.scale(black, $lightness: 25%);
+    position: absolute;
+    z-index: 0;
+    clip-path: polygon(
+      0% 0%,
+      32% 0%,
+      32% 31%,
+      47.7% 15.2%,
+      63.5% 30.9%,
+      70% 25%,
+      92.5% 47%,
+      92% 91%,
+      62.5% 62.5%,
+      31.5% 94%,
+      31.5% 62%,
+      16.5% 47.6%,
+      16.5% 16%
+    );
+    transform: translate(-8vmin, 1vmin);
+  }
 }
-.shadow{
-    @include size(25vmin);
-    position:relative;
-      .shape{
-        visibility: hidden;
-        @include size(40vmin);
-        background: color.scale(black, $lightness: 25%);
-        position: absolute;
-        z-index: 0;
-        clip-path:polygon(0% 0%, 32% 0%, 32% 31%, 47.7% 15.2%, 63.5% 30.9%, 70% 25%, 92.5% 47%, 92% 91%, 62.5% 62.5%, 31.5% 94%, 31.5% 62%, 16.5% 47.6%, 16.5% 16%);
-        transform: translate(-8vmin, 1vmin);
-      }
-} 
-.tans{
-    @include size(100%);
-    position:absolute;
-    pointer-events: none;
-    transition: transform 0.5s ease;
-    z-index: 1;
+.tans {
+  @include size(100%);
+  position: absolute;
+  pointer-events: none;
+  transition: transform 0.5s ease;
+  z-index: 1;
 }
-.hide_input{ @include position(absolute,-9999999px , 0) }
+.hide_input {
+  @include position(absolute, -9999999px, 0);
+}
 @include setTansShapes($tansShapes);
 /* .task{ background: black; } */
 .rotation {
   @include button-style(transparent, gray, 6vmin);
   @include position(absolute, 0, 0);
-  font-size:4vmin;
+  font-size: 4vmin;
   visibility: hidden;
-  color:white;
-  padding:0.5vmin;
+  color: white;
+  padding: 0.5vmin;
   align-items: center;
-   justify-content: center;
+  justify-content: center;
 }
 .start-button {
-    @include button-style(#345c3a, gray, 10vmin);
-    @include position(absolute,0 , -17vmin);
-    color:white;
+  @include button-style(#345c3a, gray, 10vmin);
+  @include position(absolute, 0, -17vmin);
+  color: white;
+}
+.tanagram-box {
+  @include size(25vmin);
+  border: 0.5vmin solid color.scale(black, $lightness: 2%);
+  border-radius: 2vmin;
+  background: color.scale(black, $lightness: 5%);
+  @include tanagram-boxes($nth-child-grid);
+  box-sizing: border-box;
+  position: relative;
+  z-index: -1;
+}
+.start {
+  &:focus {
+    & + .border {
+      visibility: visible;
+    }
+    & + .border::before {
+      animation: rotate 2s linear infinite;
+    }
   }
-.tanagram-box{
-    @include size(25vmin);
-    border: 0.5vmin solid color.scale(black, $lightness: 2%);
-    border-radius: 2vmin;
-    background: color.scale(black, $lightness: 5%);
-    @include tanagram-boxes($nth-child-grid);
-    box-sizing: border-box;
-    position: relative;
-    z-index: -1;
-  }
-.start{
-  &:focus{
-    & + .border{ visibility: visible; }
-    & + .border::before{ animation: rotate 2s linear infinite; }
-  }    
-  &:checked{
-    & ~ .shadow{
-      background:transparent;
-      .shape{ visibility: visible; }
+  &:checked {
+    & ~ .shadow {
+      background: transparent;
+      .shape {
+        visibility: visible;
+      }
     }
     @include setTansPosition($tansShapes);
-    & ~ .shadow .tans{ pointer-events: all; }
-    & ~ label.start-button{
+    & ~ .shadow .tans {
+      pointer-events: all;
+    }
+    & ~ label.start-button {
       visibility: hidden;
     }
   }
 }
-.tan_blocked{
+.tan_blocked {
   @include size(100%);
-  border-radius:2vmin;
+  border-radius: 2vmin;
   filter: blur(8px);
 }
 @include tansRotation;
@@ -365,10 +137,10 @@ body{
       $num: list.nth($input, 2);
       $angle: list.nth($input, 3);
 
-      @if $i == 1 { 
-        $comboSelectors: "##{$name}-tan-#{$num}-#{$angle}:checked"; 
-      } @else { 
-        $comboSelectors: "#{$comboSelectors} ~ ##{$name}-tan-#{$num}-#{$angle}:checked"; 
+      @if $i == 1 {
+        $comboSelectors: "##{$name}-tan-#{$num}-#{$angle}:checked";
+      } @else {
+        $comboSelectors: "#{$comboSelectors} ~ ##{$name}-tan-#{$num}-#{$angle}:checked";
       }
     }
     @if $selectors == "" {
@@ -378,18 +150,17 @@ body{
     }
   }
   #{$selectors} {
-    .shape{
-      background: white!important;
+    .shape {
+      background: white !important;
       z-index: 3;
-      transition: background 3s  ease-in;
+      transition: background 3s ease-in;
     }
-    #rotReset{
+    #rotReset {
       visibility: hidden !important;
     }
-    .tans{
-      opacity:0;
+    .tans {
+      opacity: 0;
     }
   }
 }
 @include generateWinningCombinations($winningCombinations);
-
