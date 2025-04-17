@@ -385,7 +385,7 @@
     }
   }
 }
-@mixin generateWinningCombinations($combinations) {
+@mixin generate-winning-combinations($combinations) {
   $selectors: "";
 
   @each $comboName, $inputs in $combinations {

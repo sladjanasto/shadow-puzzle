@@ -124,4 +124,4 @@ body {
 }
 @include tans-rotation;
 @include create-list-Of-correct-positions($tansShapes);
-@include generateWinningCombinations($winningCombinations);
+@include generate-winning-combinations($winningCombinations);
