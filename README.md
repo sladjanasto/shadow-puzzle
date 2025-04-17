@@ -26,6 +26,25 @@ This game is:
 
 ![Shadow Puzzle Screenshot](/screenshot_tanagram.png)
 
+# 🧠 Tutorial: How This Works
+
+This game demonstrates how far CSS can go when creatively used. Here's how the main logic is built:
+
+### 🎯 Game Mechanics (CSS Only!)
+
+- The **shadow** is a silhouette image (pseudo-element or low-opacity layer).
+- Each puzzle **piece** is styled with `clip-path`, `transform`, and `position`.
+- **CSS `:checked` or `:focus-within`** states enable interactivity and simulate selection.
+- **Rotation** and movement are controlled with buttons, labels, and sibling selectors.
+- Everything is **semantic HTML**: no div soup!
+
+### ♻️ Reusable Logic with SCSS
+
+Using SCSS mixins and variables, the game becomes modular and maintainable.
+
+- `@mixin rotate($angle)`: easily applies rotation to pieces
+- `@mixin piece($shape, $color)`: generates the clip-path and styles
+
 # 🧩 Tangram Puzzle – CSS Architecture Diagram
 
 This diagram represents the internal structure and SCSS architecture behind the **Tangram Puzzle** game built entirely with HTML and CSS (no JavaScript!).
@@ -34,9 +53,11 @@ This diagram represents the internal structure and SCSS architecture behind the 
 
 ---
 
-## 📂 What’s in the Diagram?
+## The diagram highlights:
 
-The diagram showcases how various parts of the puzzle are modularized using SCSS techniques such as mixins, utility classes, and reusable shape definitions.
+- Modular SCSS structure
+- Mixins for shapes and logic
+- Separation of layers (interactive pieces vs. shadow background)
 
 ## 🛠️ How to Use
 
