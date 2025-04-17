@@ -26,6 +26,18 @@ This game is:
 
 ![Shadow Puzzle Screenshot](/screenshot_tanagram.png)
 
+# 🧩 Tangram Puzzle – CSS Architecture Diagram
+
+This diagram represents the internal structure and SCSS architecture behind the **Tangram Puzzle** game built entirely with HTML and CSS (no JavaScript!).
+
+![Tangram CSS Diagram](tanagram.drawio.svg)
+
+---
+
+## 📂 What’s in the Diagram?
+
+The diagram showcases how various parts of the puzzle are modularized using SCSS techniques such as mixins, utility classes, and reusable shape definitions.
+
 ## 🛠️ How to Use
 
 1. Clone the repository:
