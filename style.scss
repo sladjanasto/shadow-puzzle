@@ -65,7 +65,7 @@ body {
 .hide_input {
   @include position(absolute, -9999999px, 0);
 }
-@include setTansShapes($tansShapes);
+@include set-tans-shapes($tansShapes);
 /* .task{ background: black; } */
 .rotation {
   @include button-style(transparent, gray, 6vmin);
@@ -108,7 +108,7 @@ body {
         visibility: visible;
       }
     }
-    @include setTansPosition($tansShapes);
+    @include set-tans-position($tansShapes);
     & ~ .shadow .tans {
       pointer-events: all;
     }
@@ -122,45 +122,6 @@ body {
   border-radius: 2vmin;
   filter: blur(8px);
 }
-@include tansRotation;
-
-@mixin generateWinningCombinations($combinations) {
-  $selectors: "";
-
-  @each $comboName, $inputs in $combinations {
-    $combinationCount: list.length($inputs);
-    $comboSelectors: "";
-
-    @for $i from 1 through $combinationCount {
-      $input: list.nth($inputs, $i);
-      $name: list.nth($input, 1);
-      $num: list.nth($input, 2);
-      $angle: list.nth($input, 3);
-
-      @if $i == 1 {
-        $comboSelectors: "##{$name}-tan-#{$num}-#{$angle}:checked";
-      } @else {
-        $comboSelectors: "#{$comboSelectors} ~ ##{$name}-tan-#{$num}-#{$angle}:checked";
-      }
-    }
-    @if $selectors == "" {
-      $selectors: ".shadow:has(#{$comboSelectors})";
-    } @else {
-      $selectors: "#{$selectors}, .shadow:has(#{$comboSelectors})";
-    }
-  }
-  #{$selectors} {
-    .shape {
-      background: white !important;
-      z-index: 3;
-      transition: background 3s ease-in;
-    }
-    #rotReset {
-      visibility: hidden !important;
-    }
-    .tans {
-      opacity: 0;
-    }
-  }
-}
+@include tans-rotation;
+@include create-list-Of-correct-positions($tansShapes);
 @include generateWinningCombinations($winningCombinations);

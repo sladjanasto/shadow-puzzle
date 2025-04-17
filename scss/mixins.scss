@@ -35,7 +35,7 @@
   $y: list.nth($position-list, -1);
   @return #{$x}#{$unit}#{$separator}#{$y}#{$unit};
 }
-@mixin setCliPath($tanName, $values) {
+@mixin set-clip-path($tanName, $values) {
   $clip-path-points: ();
   $clip-path-key: map.get($values, clip-path);
   $count: list.length($clip-path-key);
@@ -51,7 +51,7 @@
     clip-path: polygon(#{$clip-path-points});
   }
 }
-@mixin setRotation($tanName, $values, $angles, $color) {
+@mixin set-rotation($tanName, $values, $angles, $color) {
   @each $angle in $angles {
     & ~ #rot#{$angle} {
       transform: translate(
@@ -96,11 +96,11 @@
   }
 }
 
-@mixin setTansShapes($tansShapes) {
+@mixin set-tans-shapes($tansShapes) {
   @each $tanName, $values in $tansShapes {
     $color: color.scale(map.get($values, color), $lightness: 10%);
     $angles: (45, 90, 135, 180, 225, 270, 315, 360);
-    @include setCliPath($tanName, $values);
+    @include set-clip-path($tanName, $values);
 
     ##{$tanName}-tan:checked {
       & ~ #tan#{$tanName}Res {
@@ -125,12 +125,12 @@
           get-coordinates($values, exit-mode-btn-position, ",", vmin)
         );
       }
-      @include setRotation($tanName, $values, $angles, $color);
+      @include set-rotation($tanName, $values, $angles, $color);
     }
   }
 }
 
-@mixin setTansPosition($tansShapes) {
+@mixin set-tans-position($tansShapes) {
   @each $tanName, $values in $tansShapes {
     & ~ .shadow #tan#{$tanName}lab {
       transform-origin: get-coordinates($values, transform-origin, " ", vmin);
@@ -146,7 +146,7 @@
     }
   }
 }
-@mixin setTansPossiblePositions(
+@mixin set-tans-possible-positions(
   $name,
   $angle,
   $possiblePositions,
@@ -190,7 +190,7 @@
     }
   }
 }
-@mixin tansRotation {
+@mixin tans-rotation {
   @each $tanName, $values in $tansShapes {
     $possiblePositions: map.get($values, poss-positions);
     $possibleTansColor: map.get($values, color);
@@ -206,7 +206,7 @@
     @for $i from 1 through 8 {
       $angle: $i * 45;
       $nextAngle: if($angle + 45 > 360, 45, $angle + 45);
-      @include setPossiblePositionOnTask(
+      @include set-possible-position-on-task(
         $tanName,
         $angle,
         $possiblePositions,
@@ -217,7 +217,7 @@
         $rotResPosition
       );
       ##{$tanName}-tan {
-        @include setTansPossiblePositions(
+        @include set-tans-possible-positions(
           $tanName,
           $angle,
           $possiblePositions,
@@ -228,7 +228,7 @@
         );
       }
       ##{$tanName}-tan:checked {
-        @include setTansPossiblePositions(
+        @include set-tans-possible-positions(
           $tanName,
           360,
           $possiblePositions,
@@ -238,7 +238,7 @@
           $transformOrigin
         );
         & ~ #rotation-#{$angle}:checked {
-          @include setTansPossiblePositions(
+          @include set-tans-possible-positions(
             $tanName,
             360,
             $possiblePositions,
@@ -262,7 +262,7 @@
           & ~ #rot#{$nextAngle} {
             visibility: visible;
           }
-          @include setTansPossiblePositions(
+          @include set-tans-possible-positions(
             $tanName,
             $angle,
             $possiblePositions,
@@ -277,14 +277,14 @@
   }
 }
 
-@mixin createListOfCorrectPositions($tansShapes) {
+@mixin create-list-Of-correct-positions($tansShapes) {
   @each $tanName, $values in $tansShapes {
     $possiblePositions: map.get($values, poss-positions);
     @debug #{$tanName} $possiblePositions;
   }
 }
-@include createListOfCorrectPositions($tansShapes);
-@mixin checkPosition($tanName, $angle, $position, $tansShapes, $color, $i) {
+
+@mixin check-position($tanName, $angle, $position, $tansShapes, $color, $i) {
   $correctPositions: map.get(map.get($tansShapes, $tanName), correct-position);
   $count: list.length($correctPositions);
   @for $i from 1 through $count {
@@ -299,7 +299,7 @@
   }
 }
 
-@mixin setPossiblePositionOnTask(
+@mixin set-possible-position-on-task(
   $name,
   $angle,
   $possiblePositions,
@@ -364,7 +364,7 @@
             opacity: 1 !important;
             transform-origin: #{$transformOrigin};
             transform: translate(#{$position}) rotate(#{$angle}deg) !important;
-            @include checkPosition(
+            @include check-position(
               $name,
               $angle,
               $position,
@@ -382,6 +382,45 @@
           }
         }
       }
+    }
+  }
+}
+@mixin generateWinningCombinations($combinations) {
+  $selectors: "";
+
+  @each $comboName, $inputs in $combinations {
+    $combinationCount: list.length($inputs);
+    $comboSelectors: "";
+
+    @for $i from 1 through $combinationCount {
+      $input: list.nth($inputs, $i);
+      $name: list.nth($input, 1);
+      $num: list.nth($input, 2);
+      $angle: list.nth($input, 3);
+
+      @if $i == 1 {
+        $comboSelectors: "##{$name}-tan-#{$num}-#{$angle}:checked";
+      } @else {
+        $comboSelectors: "#{$comboSelectors} ~ ##{$name}-tan-#{$num}-#{$angle}:checked";
+      }
+    }
+    @if $selectors == "" {
+      $selectors: ".shadow:has(#{$comboSelectors})";
+    } @else {
+      $selectors: "#{$selectors}, .shadow:has(#{$comboSelectors})";
+    }
+  }
+  #{$selectors} {
+    .shape {
+      background: white !important;
+      z-index: 3;
+      transition: background 3s ease-in;
+    }
+    #rotReset {
+      visibility: hidden !important;
+    }
+    .tans {
+      opacity: 0;
     }
   }
 }

@@ -15722,6 +15722,9 @@ body {
   opacity: 1 !important;
   transform-origin: 18.75vmin 12.5vmin;
   transform: translate(-7.7vmin,1vmin) rotate(90deg) !important;
+  background-color: #f7a241;
+  pointer-events: none;
+  animation: flash-square 1.5s;
 }
 #square-tan-1-90:checked ~ #tansquarelab-2-90 {
   visibility: hidden !important;
@@ -17430,6 +17433,9 @@ body {
   opacity: 1 !important;
   transform-origin: 9.37vmin 21.88vmin;
   transform: translate(-7.8vmin,-5.2vmin) rotate(90deg) !important;
+  background-color: #49ae9f;
+  pointer-events: none;
+  animation: flash-polygon 1.5s;
 }
 #polygon-tan-4-90:checked ~ #tanpolygonlab-1-90 {
   visibility: hidden !important;
